@@ -1,4 +1,5 @@
 # Pascal's Triangle
+[task](https://drive.google.com/file/d/1EWYYtf-URRHhJByaxymCfUoRN8g55E1a/view?usp=sharing)
 
 Pascal's Triangle is a 2D array where each row represents an array containing the coefficients of the binomial expansion.
 
