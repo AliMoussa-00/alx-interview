@@ -1,0 +1,34 @@
+#!/usr/bin/python3
+
+
+import math
+
+
+def minOperations(n: int) -> int:
+    '''
+    Calculates the sum of prime factors of a given positive integer "n"
+    Time Complexity:  O(sqrt(n))
+    '''
+    if n == 1:
+        return 1
+
+    if n <= 0:
+        return 0
+
+    total = 0
+    factor = 2
+    sqrt_n = int(math.sqrt(n))
+
+    while factor <= sqrt_n:
+        if n <= 1:
+            break
+
+        if n % factor == 0:
+            total += factor
+
+            n //= factor
+            continue
+
+        factor += 1
+
+    return total
