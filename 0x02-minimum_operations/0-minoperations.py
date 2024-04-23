@@ -9,10 +9,7 @@ def minOperations(n: int) -> int:
     Calculates the sum of prime factors of a given positive integer "n"
     Time Complexity:  O(sqrt(n))
     '''
-    if n == 1:
-        return 1
-
-    if n <= 0:
+    if n <= 0 or not isinstance(n, int):
         return 0
 
     total = 0
