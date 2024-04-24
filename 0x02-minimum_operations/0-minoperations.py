@@ -24,6 +24,7 @@ def minOperations(n: int) -> int:
             total += factor
 
             n //= factor
+            factor = 2
             continue
 
         factor += 1
