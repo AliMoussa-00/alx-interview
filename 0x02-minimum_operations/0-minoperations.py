@@ -29,4 +29,7 @@ def minOperations(n: int) -> int:
 
         factor += 1
 
+    if n > 1:
+        factor += n
+
     return total
