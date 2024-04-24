@@ -14,7 +14,6 @@ def minOperations(n: int) -> int:
 
     total = 0
     factor = 2
-    # sqrt_n = int(math.sqrt(n))
     sqrt_n = int(n / 2)
 
     while factor <= sqrt_n:
@@ -25,12 +24,8 @@ def minOperations(n: int) -> int:
             total += factor
 
             n //= factor
-            factor = 2
             continue
 
         factor += 1
-
-    if n > 1:
-        factor += n
 
     return total
