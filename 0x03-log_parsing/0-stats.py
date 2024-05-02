@@ -6,6 +6,7 @@ from sys import stdin
 
 
 def calculate_stats(i: int, total_size, codes):
+    ''' calculating the total size and updating the status codes'''
     line_pattern = re.compile(
         r"(\d{1,4})\.(\d{1,4})\.(\d{1,4})\.(\d{1,4}) "
         r"\- \[(\d{4}\-\d{2}\-\d{2} \d{2}\:\d{2}\:\d{2}\.\d+)\] "
@@ -30,6 +31,7 @@ def calculate_stats(i: int, total_size, codes):
 
 
 def print_stats(total_size, codes):
+    '''printing the stats'''
     print('File size: {}'.format(total_size[0]))
 
     for code, value in codes.items():
