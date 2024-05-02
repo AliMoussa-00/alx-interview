@@ -39,21 +39,28 @@ def print_stats(total_size, codes):
             print('{}: {}'.format(code, value))
 
 
-# I used 'list' instead of 'int' because int are immutable
-total_size = [0]
-codes = {'200': 0, '301': 0, '400': 0, '401': 0,
-         '403': 0, '404': 0, '405': 0, '500': 0}
+def main():
+    '''the main function'''
 
-try:
-    while True:
-        i = 1
+    # I used 'list' instead of 'int' because int are immutable
+    total_size = [0]
+    codes = {'200': 0, '301': 0, '400': 0, '401': 0,
+             '403': 0, '404': 0, '405': 0, '500': 0}
 
-        calculate_stats(i, total_size, codes)
+    try:
+        while True:
+            i = 1
 
+            calculate_stats(i, total_size, codes)
+
+            print_stats(total_size, codes)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
         print_stats(total_size, codes)
 
-except KeyboardInterrupt:
-    pass
 
-finally:
-    print_stats(total_size, codes)
+if __name__ == '__main__':
+    main()
