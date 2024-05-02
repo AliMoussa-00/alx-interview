@@ -5,14 +5,16 @@ import re
 from sys import stdin
 
 
-def calculate_stats(i: int, total_size, codes):
+def calculate_stats(total_size, codes):
     ''' calculating the total size and updating the status codes'''
     line_pattern = re.compile(
         r"(\d{1,4})\.(\d{1,4})\.(\d{1,4})\.(\d{1,4}) "
         r"\- \[(\d{4}\-\d{2}\-\d{2} \d{2}\:\d{2}\:\d{2}\.\d+)\] "
         r"\"GET \/projects\/260 HTTP\/1\.1\" (\d{3}) (\d+)")
 
+    i = 1
     for line in stdin:
+
         match = line_pattern.match(line)
 
         if match:
@@ -32,11 +34,11 @@ def calculate_stats(i: int, total_size, codes):
 
 def print_stats(total_size, codes):
     '''printing the stats'''
-    print('File size: {:d}'.format(total_size[0]))
+    print('File size: {:d}'.format(total_size[0]), flush=True)
 
     for code, value in codes.items():
         if value != 0:
-            print('{:s}: {:d}'.format(code, value))
+            print('{:s}: {:d}'.format(code, value), flush=True)
 
 
 def main():
@@ -49,9 +51,8 @@ def main():
 
     try:
         while True:
-            i = 1
 
-            calculate_stats(i, total_size, codes)
+            calculate_stats(total_size, codes)
 
             print_stats(total_size, codes)
 
