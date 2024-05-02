@@ -39,20 +39,21 @@ def main():
                 file_size = int(match.groups()[-1])
 
                 if status_code in codes.keys():
-                    codes[status_code] = codes[status_code] + 1
+                    codes[status_code] += 1
 
                 total_size += file_size
 
                 i += 1
             if i == 10:
-                print_stats(total_size, codes)
                 i = 0
+                print_stats(total_size, codes)
 
     except Exception:
         pass
 
     finally:
         print_stats(total_size, codes)
+        return
 
 
 if __name__ == '__main__':
