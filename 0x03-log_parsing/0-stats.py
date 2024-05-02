@@ -12,7 +12,7 @@ def calculate_stats(total_size, codes):
         r"\- \[(\d{4}\-\d{2}\-\d{2} \d{2}\:\d{2}\:\d{2}\.\d+)\] "
         r"\"GET \/projects\/260 HTTP\/1\.1\" (\d{3}) (\d+)")
 
-    i = 1
+    i = 0
     for line in stdin:
 
         match = line_pattern.match(line)
@@ -27,9 +27,9 @@ def calculate_stats(total_size, codes):
 
             total_size[0] = total_size[0] + file_size
 
+        i += 1
         if i == 10:
             return
-        i += 1
 
 
 def print_stats(total_size, codes):
