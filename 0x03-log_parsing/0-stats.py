@@ -12,8 +12,9 @@ codes = {'200': 0, '301': 0, '400': 0, '401': 0,
 for line in stdin:
 
     line_pattern = re.compile(
-        r"(\d{1,4})\.(\d{1,4})\.(\d{1,4})\.(\d{1,4}) \- \[(\d{4}\-\d{2}\-\d{2} \d{2}\:\d{2}\:\d{2}\.\d+)\] \"GET \/projects\/260 HTTP\/1\.1\" (\d{3}) (\d+)")
-
+        r"(\d{1,4})\.(\d{1,4})\.(\d{1,4})\.(\d{1,4}) "
+        r"\- \[(\d{4}\-\d{2}\-\d{2} \d{2}\:\d{2}\:\d{2}\.\d+)\] "
+        r"\"GET \/projects\/260 HTTP\/1\.1\" (\d{3}) (\d+)")
     match = line_pattern.match(line)
 
     if match:
@@ -30,7 +31,7 @@ for line in stdin:
         break
     i += 1
 
-    print(f'File size: {total_size}')
+    print('File size: {}'.format(total_size))
     for code, value in codes.items():
         if value != 0:
-            print(f'{code}: {value}')
+            print('{}: {}'.format(code, value))
