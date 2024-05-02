@@ -2,13 +2,10 @@
 '''Log parsing'''
 
 import re
-import signal
 from sys import stdin
-import sys
-from typing import Dict, List
 
 
-def calculate_stats(i: int, total_size: List, codes: Dict[str, int]) -> int:
+def calculate_stats(i: int, total_size, codes):
     line_pattern = re.compile(
         r"(\d{1,4})\.(\d{1,4})\.(\d{1,4})\.(\d{1,4}) "
         r"\- \[(\d{4}\-\d{2}\-\d{2} \d{2}\:\d{2}\:\d{2}\.\d+)\] "
@@ -32,7 +29,7 @@ def calculate_stats(i: int, total_size: List, codes: Dict[str, int]) -> int:
         i += 1
 
 
-def print_stats(total_size: List, codes: Dict[str, int]) -> None:
+def print_stats(total_size, codes):
     print('File size: {}'.format(total_size[0]))
 
     for code, value in codes.items():
@@ -42,8 +39,8 @@ def print_stats(total_size: List, codes: Dict[str, int]) -> None:
 
 # I used 'list' instead of 'int' because int are immutable
 total_size = [0]
-codes: Dict[str, int] = {'200': 0, '301': 0, '400': 0, '401': 0,
-                         '403': 0, '404': 0, '405': 0, '500': 0}
+codes = {'200': 0, '301': 0, '400': 0, '401': 0,
+         '403': 0, '404': 0, '405': 0, '500': 0}
 
 try:
     while True:
