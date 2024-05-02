@@ -32,11 +32,11 @@ def calculate_stats(i: int, total_size, codes):
 
 def print_stats(total_size, codes):
     '''printing the stats'''
-    print('File size: {}'.format(total_size[0]))
+    print('File size: {:d}'.format(total_size[0]))
 
     for code, value in codes.items():
         if value != 0:
-            print('{}: {}'.format(code, value))
+            print('{:s}: {:d}'.format(code, value))
 
 
 def main():
