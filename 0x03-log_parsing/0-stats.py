@@ -43,7 +43,7 @@ def main():
 
                 total_size += file_size
 
-            i += 1
+                i += 1
             if i == 10:
                 print_stats(total_size, codes)
                 i = 0
