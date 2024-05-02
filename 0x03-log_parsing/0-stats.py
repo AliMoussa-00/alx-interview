@@ -9,7 +9,7 @@ def print_stats(total_size, codes):
     '''printing the stats'''
     print('File size: {:d}'.format(total_size), flush=True)
 
-    for code, value in codes.items():
+    for code, value in sorted(codes.items()):
         if value != 0:
             print('{:s}: {:d}'.format(code, value), flush=True)
 
