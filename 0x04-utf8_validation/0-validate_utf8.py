@@ -10,19 +10,20 @@ def validUTF8(data: List[int]) -> bool:
 
     for number in data:
 
-        bin_number = f'{number:08b}'
-        len_bits = len(bin_number)
+        # Define a binary string
+        binary_string = f'{number:08b}'
 
-        if len_bits == 8:
-            msb = bin_number[0]
-            return True if msb == 0 else False
+        # Valid UTF-8 ranges for the first byte of a character
+        valid_ranges = [
+            (0x00, 0x7F),  # Single-byte characters (ASCII)
+            (0xC2, 0xDF),  # Two-byte characters
+            (0xE0, 0xEF),  # Three-byte characters
+            (0xF0, 0xF4)   # Four-byte characters
+        ]
 
-        if len_bits > 8:
-            # print(len(bin_number))
-            # get the two most significant bites of the last 8 bits
-            two_msb = bin_number[-8:-6]
+        # Check if byte falls within any of the valid ranges
+        for start, end in valid_ranges:
+            if start <= number <= end:
+                return True
 
-            if two_msb != "10":
-                return False
-
-    return True
+        return False
