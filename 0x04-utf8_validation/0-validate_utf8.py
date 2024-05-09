@@ -46,8 +46,8 @@ def validUTF8(data: List[int]) -> bool:
         bytes_len = len(byte_value)
 
         # if 1 byte and valid
-        if bytes_len == 1 and byte_value[0] & 0b10000000 == 0:
-            continue
+        if bytes_len == 1 and byte_value[0] & 0b10000000 != 0:
+            return False
 
         elif 1 < bytes_len <= 4:
 
