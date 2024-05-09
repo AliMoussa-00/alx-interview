@@ -29,6 +29,12 @@ def validUTF8(data: List[int]) -> bool:
                 # ! all one byte values that start with 0 are valid
                 return False
 
+            # Check for overlong encoding
+            if byte_needed == 2 and number >> 4 == 0b110:
+                return False
+            elif byte_needed == 3 and number >> 3 == 0b1110:
+                return False
+
         else:
             # if more than one byte then 2 msb must be '10'
             if number >> 6 != 0b10:

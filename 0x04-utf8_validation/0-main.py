@@ -13,3 +13,20 @@ print(validUTF8(data))
 
 data = [229, 65, 127, 256]
 print(validUTF8(data))
+
+print("#" * 56)
+
+data = [195, 164]  # UTF-8 representation of 'ä' (U+00E4)
+print(validUTF8(data))  # Expected output: True
+
+data = [128]  # Invalid single-byte character
+print(validUTF8(data))  # Expected output: False
+
+data = [195, 65]  # Invalid continuation byte
+print(validUTF8(data))  # Expected output: False
+
+data = [195]  # Incomplete multi-byte character sequence
+print(validUTF8(data))  # Expected output: False
+
+data = [195, 128]  # Overlong encoding of 'ä'
+print(validUTF8(data)) # Expected output: False
