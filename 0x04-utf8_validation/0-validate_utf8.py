@@ -63,7 +63,4 @@ def validUTF8(data: List[int]) -> bool:
 
                 i += 1
 
-        else:
-            return False
-
     return True

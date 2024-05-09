@@ -14,5 +14,8 @@ print(validUTF8(data))
 data = [229, 65, 127, 256]
 print(validUTF8(data))
 
-data = integers_list = [65, 5000, 65536, 123456789]
+data = integers_list = [20013, 26085, 12354, 128512, 129300]
+print(validUTF8(data))
+
+data = integers_list = [66376]
 print(validUTF8(data))
