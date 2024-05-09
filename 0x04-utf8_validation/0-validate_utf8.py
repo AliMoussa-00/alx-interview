@@ -4,7 +4,7 @@
 
 from typing import List
 
-
+"""
 def get_byte_value(number: int) -> bytes:
     '''
     return the byte representation of an integer
@@ -44,10 +44,13 @@ def validUTF8(data: List[int]) -> bool:
 
         byte_value = get_byte_value(number)
         bytes_len = len(byte_value)
-
+        print(bin(number))
         # if 1 byte and valid
-        if bytes_len == 1 and byte_value[0] & 0b10000000 != 0:
-            return False
+        if bytes_len == 1:
+            if byte_value[0] & 0b10000000 == 0:
+                return True
+            else:
+                return False
 
         elif 1 < bytes_len <= 4:
 
@@ -62,5 +65,42 @@ def validUTF8(data: List[int]) -> bool:
                     return False
 
                 i += 1
+
+    return True
+"""
+
+
+def validUTF8(data: List[int]) -> bool:
+    '''Validates if a set of data is a valid UTF-8 encoding'''
+
+    # Masks for validating byte sequences
+    masks = [0b10000000, 0b11100000, 0b11110000, 0b11111000]
+
+    # Iterate through each byte in the data list
+    while data:
+        byte = data.pop(0)
+
+        # Determine the number of bytes in the sequence
+        # based on the leading bits
+        if byte < 128:  # Single-byte character
+            continue
+        elif byte < 192 or byte >= 240:  # Invalid leading byte
+            return False
+        elif byte < 224:  # Two-byte character
+            expected_length = 2
+        elif byte < 240:  # Three-byte character
+            expected_length = 3
+        else:  # Four-byte character
+            expected_length = 4
+
+        # Check if there are enough bytes in the data list to form the sequence
+        if len(data) < expected_length - 1:
+            return False
+
+        # Check the validity of subsequent bytes in the sequence
+        for _ in range(expected_length - 1):
+            next_byte = data.pop(0)
+            if next_byte < 128 or next_byte >= 192:
+                return False
 
     return True
