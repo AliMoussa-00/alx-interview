@@ -15,7 +15,7 @@ def validUTF8(data: List[int]) -> bool:
     for number in data:
         if byte_needed == 0:
 
-            if number >> 5 == 0b110:
+            if number >> 5 == 0b110 or number >> 5 == 0b1110:
                 byte_needed = 1
 
             elif number >> 4 == 0b1110:
@@ -27,12 +27,6 @@ def validUTF8(data: List[int]) -> bool:
             elif number >> 7 == 0b1:
                 # invalid case if only one byte and msb = 1
                 # ! all one byte values that start with 0 are valid
-                return False
-
-            # Check for overlong encoding
-            if byte_needed == 2 and number >> 4 == 0b110:
-                return False
-            elif byte_needed == 3 and number >> 3 == 0b1110:
                 return False
 
         else:
