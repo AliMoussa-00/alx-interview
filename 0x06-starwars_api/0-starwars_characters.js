@@ -13,12 +13,12 @@ function fetchFilm (url) {
   return new Promise((resolve, reject) => {
     request(url, { json: true }, (err, response, body) => {
       if (err) {
-        reject('Error fetching film');
+        reject(new Error('Error fetching film'));
         return;
       }
 
-      if (response.statusCode != 200) {
-        reject('Failed to fetch film');
+      if (response.statusCode !== 200) {
+        reject(new Error('Failed to fetch film'));
         return;
       }
 
@@ -29,14 +29,14 @@ function fetchFilm (url) {
 
 async function fetchCharacters (filmBody) {
   const charactersUrls = filmBody.characters;
-  if (charactersUrls == undefined) {
+  if (charactersUrls === undefined) {
     return [];
   }
 
   const characters = [];
   for (const characterUrl of charactersUrls) {
     const body = await fetchCharacter(characterUrl);
-    if (body.name != undefined) {
+    if (body.name !== undefined) {
       characters.push(body.name);
     }
   }
@@ -48,12 +48,12 @@ function fetchCharacter (characterUrl) {
   return new Promise((resolve, reject) => {
     request(characterUrl, { json: true }, (err, response, body) => {
       if (err) {
-        reject(`Error fetching character from ${characterUrl}`);
+        reject(new Error(`Error fetching character from ${characterUrl}`));
         return;
       }
 
-      if (response.statusCode != 200) {
-        reject(`Failed to fetch character from ${characterUrl}`);
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to fetch character from ${characterUrl}`));
         return;
       }
 
