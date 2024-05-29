@@ -2,7 +2,7 @@
 '''Rotate 2D Matrix'''
 
 
-def rotate_2d_matrix(matrix: list[int, int]):
+def rotate_2d_matrix(matrix):
     '''rotate a matrix by 90 degrees'''
 
     n = len(matrix)
