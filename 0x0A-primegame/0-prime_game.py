@@ -25,24 +25,23 @@ def sieve_of_Eratosthenes(n):
 def isWinner(x, nums):
     '''who is the winner, Maria or Ben ? '''
 
-    # let just return the list of prime number less or equal n in nums
-
-    is_Maria = True
     maria_wins = 0
     ben_wins = 0
 
     for n in nums:
-        i = 0
         primes = sieve_of_Eratosthenes(n)
-        while i < x and len(primes) > 0:
-            primes.pop(0)
-            is_Maria = not is_Maria
-            i += 1
+        if not primes:
+            ben_wins += 1
+            continue
 
-        if is_Maria:
+        if len(primes) % 2 == 0:
             ben_wins += 1
         else:
             maria_wins += 1
 
-    winner = 'Maria' if maria_wins > ben_wins else 'Ben'
-    return winner
+    if maria_wins > ben_wins:
+        return "Maria"
+    elif ben_wins > maria_wins:
+        return "Ben"
+    else:
+        return None
