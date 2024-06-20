@@ -27,7 +27,7 @@ def isWinner(x, nums):
     if x is None or nums is None or x == 0 or nums == []:
         return None
 
-    if x != len(nums):
+    if x > len(nums):
         return None
 
     maria_wins = 0
@@ -38,18 +38,6 @@ def isWinner(x, nums):
         if not primes or len(primes) == 0:
             ben_wins += 1
             continue
-
-        # isMaria = True
-        # rounds = x
-        # while rounds > 0 and len(primes) > 0:
-        #     isMaria = not isMaria
-        #     rounds -= 1
-        #     primes.pop(0)
-
-        # if isMaria:
-        #     ben_wins += 1
-        # else:
-        #     maria_wins += 1
 
         if len(primes) % 2 == 0:
             ben_wins += 1
