@@ -30,11 +30,22 @@ def isWinner(x, nums):
 
     for n in nums:
         primes = sieve_of_Eratosthenes(n)
-        if not primes:
+        if not primes or len(primes) == 0:
             ben_wins += 1
             continue
 
-        if len(primes) % 2 == 0:
+        isMaria = True
+        rounds = x
+        while rounds > 0 and len(primes) > 0:
+            isMaria = not isMaria
+            rounds -= 1
+            primes.pop(0)
+
+        # if len(primes) % 2 == 0:
+        #     ben_wins += 1
+        # else:
+        #     maria_wins += 1
+        if isMaria:
             ben_wins += 1
         else:
             maria_wins += 1
